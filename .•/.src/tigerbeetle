@@ -1,0 +1,5 @@
+# Tigerbeetle (go..go..go..go!)
+curl -Lo "$dir/tigerbeetle.zip" "https://mac.tigerbeetle.com"
+unzip "$dir/tigerbeetle.zip" -d "$dir"
+sudo mv "$dir/tigerbeetle" /usr/local/bin
+tigerbeetle version

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Set variables
+ZIP_URL="https://nightly.link/mpv-player/mpv/workflows/build/master/mpv-macos-15-arm.zip"
+ZIP_NAME="mpv-macos-15-arm.zip"
+APP_NAME="mpv.app"
+INSTALL_DIR="/Applications"
+
+# Download the ZIP file
+curl -L -o "$ZIP_NAME" "$ZIP_URL"
+
+# Create a temporary directory to extract the contents
+TEMP_DIR=$(mktemp -d)
+
+# Unzip the downloaded file
+unzip -q "$ZIP_NAME" -d "$TEMP_DIR"
+
+# Move the application to /Applications
+mv "$TEMP_DIR/$APP_NAME" "$INSTALL_DIR/"
+
+# Clean up: remove the temporary directory and the zip file
+rm -rf "$TEMP_DIR" "$ZIP_NAME"
+
+

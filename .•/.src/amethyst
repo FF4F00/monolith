@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Download Amethyst
+echo "Downloading Amethyst..."
+curl -L -o ~/Downloads/Amethyst.zip https://github.com/ianyh/Amethyst/releases/download/v0.23.1/Amethyst.zip
+
+# Unzip the application
+echo "Unzipping Amethyst..."
+unzip ~/Downloads/Amethyst.zip -d ~/Downloads/
+
+# Copy to Applications
+echo "Installing to Applications..."
+cp -R ~/Downloads/Amethyst.app /Applications
+
+echo "Installation complete. Amethyst is now available in your Applications folder."
+

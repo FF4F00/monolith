@@ -1,0 +1,38 @@
+# SURREALDB
+curl -sSf https://install.surrealdb.com | sh
+PATH=/Users/io/.surrealdb:$PATH
+sudo mv /Users/io/.surrealdb/surreal /usr/local/bin
+
+#surreal help
+#surreal start --log debug --user root --pass root memory
+# https://surrealdb.com/docs
+#deno add jsr:@surrealdb/surrealdb
+#magic run pip install surrealdb
+
+# SURREALIST
+
+# Set variables
+DMG_URL="https://github.com/surrealdb/surrealist/releases/download/surrealist-v3.3.2/Surrealist_3.3.2_aarch64.dmg"
+DMG_NAME="Surrealist_3.3.2_aarch64.dmg"
+VOLUME_NAME="Surrealist" # You might need to adjust this
+
+# Download the DMG
+curl -L -o "$DMG_NAME" "$DMG_URL"
+
+# Mount the DMG
+MOUNT_POINT=$(hdiutil attach "$DMG_NAME" | grep "/Volumes/" | awk '{print $3}')
+
+# Copy the app to /Applications
+cp -R "$MOUNT_POINT/Surrealist.app" /Applications/
+
+# Unmount the DMG
+hdiutil detach "$MOUNT_POINT"
+
+# Remove the downloaded DMG
+rm "$DMG_NAME"
+
+
+
+
+
+

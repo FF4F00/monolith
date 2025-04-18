@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Change to /tmp directory
+cd /tmp
+
+# Clone rebar3 repository
+git clone https://github.com/erlang/rebar3.git
+cd rebar3
+
+# Bootstrap rebar3
+./bootstrap
+
+# Install rebar3 to /usr/local/bin
+sudo cp rebar3 /usr/local/bin/
+
+# Verify installation
+rebar3 --version
+
+# Clean up
+cd ..
+rm -rf rebar3
+

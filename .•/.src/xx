@@ -1,0 +1,18 @@
+sudo rm -rf /usr/local/bin/*
+sudo rm -rf /usr/local/doc/*
+sudo rm -rf /usr/local/lib/*
+sudo rm -rf /usr/local/share/*
+sudo rm -rf /usr/local/include/*
+sudo rm -rf $HOME/.ghcup
+sudo rm -rf $HOME/.cargo
+sudo rm -rf $HOME/.aws
+sudo rm -rf $HOME/.codeium
+sudo rm -rf $HOME/.ipython
+sudo rm -rf $HOME/.lldb
+sudo rm -rf $HOME/.modular
+sudo rm -rf $HOME/.rustup
+sudo rm -rf $HOME/.surrealdb
+
+brew list --formula | xargs brew uninstall --force
+brew list --cask | xargs brew uninstall --force
+

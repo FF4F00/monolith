@@ -1,0 +1,48 @@
+#!/bin/sh
+
+if dir exist do this
+rm ~/.modular/bin/magic
+fi
+
+
+curl -ssL https://magic.modular.com/deb1ac79-7602-4472-9615-16f92ba17278 | bash
+magic self-update
+
+cd $HOME/.• && magic init
+
+magic add max
+magic add conda
+magic add jupyterlab
+magic add "python=3.12"
+magic add pip
+
+magic run pip install surrealdb
+magic run pip install aws-shell
+
+
+
+$HOME/.•/.magic/envs/default/bin/mojo-lsp-server
+$HOME/.•/.magic/envs/default/bin/mojo-lldb-dap
+$HOME/.•/.magic/envs/default/bin/mojo-lldb
+$HOME/.•/.magic/envs/default/bin/mojo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

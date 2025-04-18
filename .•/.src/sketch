@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Set variables
+ZIP_URL="https://download.sketch.com/sketch-101.8-182106.zip"
+ZIP_NAME="sketch-101.8-182106.zip"
+APP_NAME="Sketch.app"
+INSTALL_DIR="/Applications"
+
+# Download the ZIP file
+curl -L -o "$ZIP_NAME" "$ZIP_URL"
+
+# Create a temporary directory for extraction
+TEMP_DIR=$(mktemp -d)
+
+# Unzip the downloaded file
+unzip -q "$ZIP_NAME" -d "$TEMP_DIR"
+
+# Move the application to /Applications
+mv "$TEMP_DIR/$APP_NAME" "$INSTALL_DIR/"
+
+# Clean up
+rm -rf "$TEMP_DIR" "$ZIP_NAME"
+
+echo "Sketch has been installed to $INSTALL_DIR"
+

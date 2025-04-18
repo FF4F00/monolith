@@ -1,0 +1,18 @@
+#!/bin/bash
+
+
+dir="/tmp"
+zip="tar.gz"
+
+
+
+unibilium="v2.0.0"
+
+
+curl -o "$dir/unibilium-$unibilium.$zip" -L "https://github.com/mauke/unibilium/archive/refs/tags/$unibilium.tar.gz"
+
+
+tar -xzvf "$dir/unibilium-$unibilium.$zip" -C $dir && rm -rf $dir/unibilium-$unibilium.$zip
+
+
+cd "$dir/unibilium-$unibilium" && make && sudo make install

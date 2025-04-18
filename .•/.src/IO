@@ -1,0 +1,31 @@
+# CLOUDFLARE
+cd $HOME/.•/
+magic run pip install cloudflare-cli4
+
+# STORJ
+curl -L https://github.com/storj/storj/releases/latest/download/uplink_darwin_arm64.zip -o uplink_darwin_arm64.zip
+unzip -o uplink_darwin_arm64.zip
+sudo install uplink /usr/local/bin/uplink
+
+# TAILWIND CSS 
+curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-macos-arm64
+chmod +x tailwindcss-macos-arm64
+mv tailwindcss-macos-arm64 tailwindcss
+
+# JUPYTERLAB
+brew install --cask jupyterlab
+mkdir $HOME/.notes
+cd $HOME/.notes
+magic add "python==3.11"
+magic add conda
+magic add jupyterlab
+
+# AMETHYST
+brew install --cask amethyst
+
+# SKETCHYBAR
+brew tap FelixKratz/formulae
+brew install sketchybar
+
+# OBS
+brew install --cask obs

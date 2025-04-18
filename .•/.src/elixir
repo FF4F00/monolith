@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Variables
+ELIXIR_VERSION="1.18.3"  # Update this to the latest version
+SOURCE_URL="https://github.com/elixir-lang/elixir/archive/v${ELIXIR_VERSION}.tar.gz"
+DOWNLOAD_DIR="/tmp"
+BUILD_DIR="/tmp/elixir-${ELIXIR_VERSION}"
+INSTALL_DIR="/usr/local"
+
+# Download Elixir source code
+echo "Downloading Elixir source code..."
+curl -L "$SOURCE_URL" -o "$DOWNLOAD_DIR/elixir-${ELIXIR_VERSION}.tar.gz"
+
+# Extract the source code
+echo "Extracting Elixir source code..."
+tar zxvf "$DOWNLOAD_DIR/elixir-${ELIXIR_VERSION}.tar.gz" -C "$DOWNLOAD_DIR"
+
+# Build and install Elixir
+echo "Building and installing Elixir..."
+cd "$BUILD_DIR"
+make clean compile
+sudo make install PREFIX="$INSTALL_DIR"
+
+# Verify installation
+echo "Verifying Elixir installation..."
+if [ -x "$INSTALL_DIR/bin/elixir" ]; then
+  echo "Elixir successfully installed at $INSTALL_DIR/bin/elixir."
+else
+  echo "Elixir installation failed."
+  exit 1
+fi
+
+# Clean up
+echo "Cleaning up..."
+rm -rf "$BUILD_DIR"
+rm "$DOWNLOAD_DIR/elixir-${ELIXIR_VERSION}.tar.gz"
+
+echo "Installation complete!"
+

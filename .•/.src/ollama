@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Set variables
+ZIP_URL="https://ollama.com/download/Ollama-darwin.zip"
+ZIP_NAME="Ollama-darwin.zip"
+APP_NAME="Ollama.app"
+INSTALL_DIR="/Applications"
+
+# Download the ZIP file
+curl -L -o "$ZIP_NAME" "$ZIP_URL"
+
+# Create a temporary directory to extract the contents
+TEMP_DIR=$(mktemp -d)
+
+# Unzip the downloaded file
+unzip -q "$ZIP_NAME" -d "$TEMP_DIR"
+
+# Move the application to /Applications
+mv "$TEMP_DIR/$APP_NAME" "$INSTALL_DIR/"
+
+# Clean up: remove the temporary directory and the zip file
+rm -rf "$TEMP_DIR" "$ZIP_NAME"
+
+#ollama run llama3.2:3b
+#ollama run qwen2.5-coder:7b
+#ollama run deepseek-coder:6.7b
+#ollama run gemma3:4b

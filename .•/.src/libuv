@@ -1,0 +1,15 @@
+#!/bin/bash
+
+dir="/tmp"
+zip="tar.gz"
+
+libuv="v1.49.2"
+
+curl -o "$dir/libuv-$libuv.$zip" -L "https://dist.libuv.org/dist/$libuv/libuv-$libuv.tar.gz"
+
+tar -xzvf "$dir/libuv-$libuv.$zip" -C $dir && rm -rf $dir/libuv-$libuv.$zip
+
+cd "$dir/libuv-$libuv" 
+./configure .
+make
+sudo make install

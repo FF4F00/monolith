@@ -1,0 +1,16 @@
+#!/bin/zsh
+dir="/tmp"
+zip="tar.gz"
+
+gettext="gettext-0.24"
+
+
+# DOWNLOAD
+curl -o "$dir/$gettext.$zip"  -OL "https://ftp.gnu.org/pub/gnu/gettext/$gettext.$zip"
+
+# UNPACK
+tar -xzvf "$dir/$gettext.$zip"  -C $dir
+
+
+# INSTALL
+cd "$dir/$gettext"  && ./configure && make && sudo make install # gettext

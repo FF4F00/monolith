@@ -1,0 +1,56 @@
+# Erlang
+
+#!/bin/bash
+
+# Script to install Erlang from source on macOS
+
+# Variables
+ERLANG_VERSION="27.0"  # Replace with the desired version
+SOURCE_URL="https://github.com/erlang/otp/releases/download/OTP-${ERLANG_VERSION}/otp_src_${ERLANG_VERSION}.tar.gz"
+DOWNLOAD_DIR="/tmp"
+BUILD_DIR="/tmp/otp_src_${ERLANG_VERSION}"
+INSTALL_DIR="/usr/local"
+
+# Ensure autoconf is installed
+if ! command -v autoconf &>/dev/null; then
+  echo "Installing autoconf..."
+  curl -O http://ftp.gnu.org/gnu/autoconf/autoconf-latest.tar.gz
+  tar zxvf autoconf-latest.tar.gz
+  cd autoconf-*
+  ./configure && make && sudo make install
+  cd ..
+  rm -rf autoconf-*
+else
+  echo "Autoconf is already installed."
+fi
+
+# Download Erlang source code
+echo "Downloading Erlang source code..."
+curl -L "$SOURCE_URL" -o "$DOWNLOAD_DIR/otp_src_${ERLANG_VERSION}.tar.gz"
+
+# Extract the source code
+echo "Extracting Erlang source code..."
+tar zxvf "$DOWNLOAD_DIR/otp_src_${ERLANG_VERSION}.tar.gz" -C "$DOWNLOAD_DIR"
+
+# Build and install Erlang
+echo "Building and installing Erlang..."
+cd "$BUILD_DIR"
+./configure --prefix="$INSTALL_DIR" && make && sudo make install
+
+# Verify installation
+echo "Verifying Erlang installation..."
+if [ -x "$INSTALL_DIR/bin/erl" ]; then
+  echo "Erlang successfully installed at $INSTALL_DIR."
+else
+  echo "Erlang installation failed."
+  exit 1
+fi
+
+# Clean up
+echo "Cleaning up..."
+rm -rf "$BUILD_DIR"
+rm "$DOWNLOAD_DIR/otp_src_${ERLANG_VERSION}.tar.gz"
+
+echo "Installation complete!"
+
+

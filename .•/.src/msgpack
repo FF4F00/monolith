@@ -1,0 +1,15 @@
+#!/bin/bash
+
+
+dir="/tmp"
+zip="tar.gz"
+
+
+
+msgpack="cpp-7.0.0"
+
+curl -o "$dir/msgpack-$msgpack.$zip"  -L "https://github.com/msgpack/msgpack-c/archive/refs/tags/$msgpack.tar.gz"
+
+tar -xzvf "$dir/msgpack-$msgpack.$zip" -C $dir && rm -rf $dir/msgpack-$msgpack.$zip
+
+cd "$dir/msgpack-c-$msgpack" && cmake . && make && sudo make install

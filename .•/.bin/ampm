@@ -1,0 +1,23 @@
+#!/bin/zsh
+
+dir="$HOME/Library/Application Support/com.mitchellh.ghostty"
+config="$dir/config"
+am="$dir/am"
+pm="$dir/pm"
+
+if grep -q 'theme *= *am' "$config"; then
+  cp "$pm" "$config"
+else
+  cp "$am" "$config"
+fi
+
+# Silent reload with full output suppression
+osascript <<'EOF' >/dev/null 2>&1
+tell application "Ghostty" to activate
+delay 0.5
+tell application "System Events"
+  tell process "Ghostty"
+    perform action "AXPress" of menu item "Reload configuration" of menu "Ghostty" of menu bar 1
+  end tell
+end tell
+EOF

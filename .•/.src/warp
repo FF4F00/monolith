@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Set variables
+DMG_URL="https://releases.warp.dev/stable/v0.2025.04.16.08.11.stable_02/Warp.dmg"
+DMG_NAME="Warp.dmg"
+
+# Download the DMG file
+curl -L -o "$DMG_NAME" "$DMG_URL"
+
+# Mount the DMG
+MOUNT_POINT=$(hdiutil attach "$DMG_NAME" | grep "/Volumes/" | awk '{print $3}')
+
+# Copy the app to /Applications
+cp -R "$MOUNT_POINT/Warp.app" /Applications/
+
+# Unmount the DMG
+hdiutil detach "$MOUNT_POINT"
+
+# Remove the downloaded DMG
+rm "$DMG_NAME"
+
+echo "Warp has been installed to /Applications."
+

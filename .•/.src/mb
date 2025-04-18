@@ -1,0 +1,12 @@
+
+cd $HOME/Desktop/02LAUNCH && magic add "python=3.12" pip conda jupyterlab
+cd $HOME/Desktop/FF4F00   && magic add "python=3.12" pip conda jupyterlab
+cd $HOME/Desktop/IO       && magic add "python=3.12" pip conda jupyterlab
+cd $HOME/Desktop/UI       && magic add "python=3.12" pip conda jupyterlab
+cd $HOME/Desktop/iD       && magic add "python=3.12" pip conda jupyterlab
+cd $HOME/Desktop/Bazaar   && magic add "python=3.12" pip conda jupyterlab
+cd $HOME/Desktop/HALO     && magic add "python=3.12" pip conda jupyterlab
+cd $HOME/Desktop/MARS     && magic add "python=3.12" pip conda jupyterlab
+cd $HOME/Desktop/cirqol   && magic add "python=3.12" pip conda jupyterlab
+
+

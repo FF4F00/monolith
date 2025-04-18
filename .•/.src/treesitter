@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+dir="/tmp"
+zip="tar.gz"
+
+
+tree_sitter="v0.25.2"
+
+curl -o "$dir/tree-sitter-$tree_sitter.$zip" -L "https://github.com/tree-sitter/tree-sitter/archive/refs/tags/$tree_sitter.tar.gz"
+
+tar -xzvf "$dir/tree-sitter-$tree_sitter.$zip" -C $dir && rm -rf $dir/tree-sitter-$tree_sitter.$zip
+
+cd "$dir/tree-sitter-$tree_sitter" && make && sudo make install

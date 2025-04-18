@@ -1,0 +1,13 @@
+#!/bin/bash
+
+dir="/tmp"
+zip="tar.gz"
+
+
+lua_jit="v2.1.ROLLING"
+
+curl -o "$dir/lua_jit-$lua_jit.$zip" -L "https://github.com/LuaJIT/LuaJIT/archive/refs/tags/$lua_jit.tar.gz"
+
+tar -xzvf "$dir/lua_jit-$lua_jit.$zip" -C $dir && rm -rf $dir/lua_jit-$lua_jit.$zip
+
+cd "$dir/LuaJIT-$lua_jit" && make && sudo make install

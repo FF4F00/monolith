@@ -1,0 +1,15 @@
+#!/bin/bash
+
+dir="/tmp"
+zip="tar.gz"
+
+pkgc="pkg-config-0.29.2"
+
+curl -o "$dir/$pkgc.$zip" -L "https://pkgconfig.freedesktop.org/releases/$pkgc.$zip"
+
+tar -xzvf "$dir/$pkgc.$zip" -C $dir && rm -rf $dir/$pkgc.$zip
+
+cd "$dir/$pkgc" && \
+./configure && \
+make -j$(sysctl -n hw.ncpu) && \
+sudo make install

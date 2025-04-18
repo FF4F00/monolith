@@ -1,0 +1,16 @@
+#!/bin/zsh
+dir="/tmp"
+zip="tar.gz"
+
+libtool="libtool-2.5.4"
+
+# DOWNLOAD
+curl -o "$dir/$libtool.$zip"  -OL "https://ftpmirror.gnu.org/libtool/$libtool.$zip"
+
+
+# UNPACK
+tar -xzvf "$dir/$libtool.$zip"  -C $dir
+
+
+# INSTALL
+cd "$dir/$libtool"  && ./configure && make && sudo make install # libtool

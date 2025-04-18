@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+dir="/tmp"
+zip="tar.gz"
+
+
+luv="1.50.0-1"
+
+curl -o "$dir/luv-$luv.$zip" -L "https://github.com/luvit/luv/archive/refs/tags/$luv.tar.gz"
+
+tar -xzvf "$dir/luv-$luv.$zip" -C $dir && rm -rf $dir/luv-$luv.$zip
+
+cd "$dir/luv-$luv" && make && sudo make install

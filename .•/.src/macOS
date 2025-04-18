@@ -1,0 +1,26 @@
+#!/bin/sh
+
+
+xcode-select --install
+softwareupdate --install-rosetta --agree-to-license
+source $HOME/.•/src/macports
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

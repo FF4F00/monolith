@@ -1,0 +1,62 @@
+#!/bin/bash
+
+set -e
+
+# Notion (DMG)
+NOTION_DMG_URL="https://desktop-release.notion-static.com/Notion-4.8.7-universal.dmg"
+NOTION_DMG_NAME="Notion-4.8.7-universal.dmg"
+
+echo "Downloading Notion..."
+curl -L -o "$NOTION_DMG_NAME" "$NOTION_DMG_URL"
+
+echo "Mounting Notion DMG..."
+MOUNT_POINT=$(hdiutil attach "$NOTION_DMG_NAME" | grep "/Volumes/" | awk '{print $3}')
+
+echo "Copying Notion.app to /Applications..."
+cp -R "$MOUNT_POINT/Notion.app" /Applications/
+
+echo "Unmounting Notion DMG..."
+hdiutil detach "$MOUNT_POINT"
+
+rm "$NOTION_DMG_NAME"
+echo "Notion has been installed to /Applications."
+echo
+
+# Notion Mail (ZIP)
+NOTION_MAIL_ZIP_URL="https://mail-desktop-release.notion-static.com/Notion%20Mail-0.0.32-arm64.zip"
+NOTION_MAIL_ZIP_NAME="NotionMail-0.0.32-arm64.zip"
+NOTION_MAIL_APP_NAME="Notion Mail.app"
+
+echo "Downloading Notion Mail..."
+curl -L -o "$NOTION_MAIL_ZIP_NAME" "$NOTION_MAIL_ZIP_URL"
+
+MAIL_TEMP_DIR=$(mktemp -d)
+unzip -q "$NOTION_MAIL_ZIP_NAME" -d "$MAIL_TEMP_DIR"
+
+echo "Copying Notion Mail.app to /Applications..."
+mv "$MAIL_TEMP_DIR/$NOTION_MAIL_APP_NAME" /Applications/
+
+rm -rf "$MAIL_TEMP_DIR" "$NOTION_MAIL_ZIP_NAME"
+echo "Notion Mail has been installed to /Applications."
+echo
+
+# Notion Calendar (ZIP)
+NOTION_CAL_ZIP_URL="https://calendar-desktop-release.notion-static.com/Notion%20Calendar-darwin-arm64-1.130.0.zip"
+NOTION_CAL_ZIP_NAME="NotionCalendar-darwin-arm64-1.130.0.zip"
+NOTION_CAL_APP_NAME="Notion Calendar.app"
+
+echo "Downloading Notion Calendar..."
+curl -L -o "$NOTION_CAL_ZIP_NAME" "$NOTION_CAL_ZIP_URL"
+
+CAL_TEMP_DIR=$(mktemp -d)
+unzip -q "$NOTION_CAL_ZIP_NAME" -d "$CAL_TEMP_DIR"
+
+echo "Copying Notion Calendar.app to /Applications..."
+mv "$CAL_TEMP_DIR/$NOTION_CAL_APP_NAME" /Applications/
+
+rm -rf "$CAL_TEMP_DIR" "$NOTION_CAL_ZIP_NAME"
+echo "Notion Calendar has been installed to /Applications."
+echo
+
+echo "All apps have been installed to /Applications."
+

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Set variables
+DMG_URL="https://release.files.ghostty.org/1.1.3/Ghostty.dmg"
+DMG_NAME="Ghostty.dmg"
+VOLUME_NAME="Ghostty"
+
+# Download the DMG
+curl -L -o "$DMG_NAME" "$DMG_URL"
+
+# Mount the DMG
+MOUNT_POINT=$(hdiutil attach "$DMG_NAME" | grep "/Volumes/" | awk '{print $3}')
+
+# Copy the app to /Applications
+cp -R "$MOUNT_POINT/Ghostty.app" /Applications/
+
+# Unmount the DMG
+hdiutil detach "$MOUNT_POINT"
+
+# Remove the downloaded DMG
+rm "$DMG_NAME"
+
+

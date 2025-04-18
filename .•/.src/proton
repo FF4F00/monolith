@@ -1,0 +1,53 @@
+#!/bin/bash
+
+set -e
+
+# Function to install a DMG
+install_dmg() {
+  local DMG_URL="$1"
+  local DMG_NAME="$2"
+  local APP_NAME="$3"
+
+  echo "Downloading $APP_NAME..."
+  curl -L -o "$DMG_NAME" "$DMG_URL"
+
+  echo "Mounting $DMG_NAME..."
+  MOUNT_POINT=$(hdiutil attach "$DMG_NAME" | grep "/Volumes/" | awk '{print $3}')
+
+  echo "Copying $APP_NAME to /Applications..."
+  cp -R "$MOUNT_POINT/$APP_NAME" /Applications/
+
+  echo "Unmounting $DMG_NAME..."
+  hdiutil detach "$MOUNT_POINT"
+
+  rm "$DMG_NAME"
+  echo "$APP_NAME has been installed to /Applications."
+  echo
+}
+
+# ProtonMail
+PROTONMAIL_DMG_URL="https://proton.me/download/mail/macos/1.8.0/ProtonMail-desktop.dmg"
+PROTONMAIL_DMG_NAME="ProtonMail-desktop.dmg"
+PROTONMAIL_APP_NAME="ProtonMail.app"
+install_dmg "$PROTONMAIL_DMG_URL" "$PROTONMAIL_DMG_NAME" "$PROTONMAIL_APP_NAME"
+
+# ProtonPass
+PROTONPASS_DMG_URL="https://proton.me/download/PassDesktop/darwin/universal/ProtonPass_1.31.1.dmg"
+PROTONPASS_DMG_NAME="ProtonPass_1.31.1.dmg"
+PROTONPASS_APP_NAME="ProtonPass.app"
+install_dmg "$PROTONPASS_DMG_URL" "$PROTONPASS_DMG_NAME" "$PROTONPASS_APP_NAME"
+
+# ProtonDrive
+PROTONDRIVE_DMG_URL="https://proton.me/download/drive/macos/ProtonDrive-2.1.1.dmg"
+PROTONDRIVE_DMG_NAME="ProtonDrive-2.1.1.dmg"
+PROTONDRIVE_APP_NAME="ProtonDrive.app"
+install_dmg "$PROTONDRIVE_DMG_URL" "$PROTONDRIVE_DMG_NAME" "$PROTONDRIVE_APP_NAME"
+
+# ProtonVPN
+PROTONVPN_DMG_URL="https://protonvpn.com/download/macos/4.8.0/ProtonVPN_mac_v4.8.0.dmg"
+PROTONVPN_DMG_NAME="ProtonVPN_mac_v4.8.0.dmg"
+PROTONVPN_APP_NAME="ProtonVPN.app"
+install_dmg "$PROTONVPN_DMG_URL" "$PROTONVPN_DMG_NAME" "$PROTONVPN_APP_NAME"
+
+echo "All Proton apps have been installed to /Applications."
+

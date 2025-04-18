@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Variables
+GLEAM_VERSION="v1.9.1"
+DOWNLOAD_DIR="/tmp"
+BUILD_DIR="/tmp/gleam"
+INSTALL_DIR="/usr/local/bin"
+
+# Ensure Rust is installed
+if ! command -v rustc &>/dev/null; then
+    echo "Rust is required to build Gleam. Please install Rust and try again."
+    exit 1
+fi
+
+# Download the Gleam source code git repository
+echo "Cloning Gleam repository..."
+cd "$DOWNLOAD_DIR"
+git clone https://github.com/gleam-lang/gleam.git --branch "$GLEAM_VERSION"
+
+# Build the Gleam compiler
+echo "Building Gleam..."
+cd "$BUILD_DIR"
+make build
+
+# Install Gleam
+echo "Installing Gleam..."
+sudo cp "target/release/gleam" "$INSTALL_DIR/gleam"
+
+# Verify the compiler is installed
+echo "Verifying Gleam installation..."
+if [ -x "$INSTALL_DIR/gleam" ]; then
+    gleam --version
+else
+    echo "Gleam installation failed."
+    exit 1
+fi
+
+echo "Installation complete!"
+
+
+

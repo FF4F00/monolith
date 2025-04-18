@@ -1,0 +1,39 @@
+# CREATE USERS
+# aws iam create-user --user-name CEO
+# aws iam create-user --user-name CFO
+# aws iam create-user --user-name COO
+# aws iam create-user --user-name CTO
+
+
+
+# DELETE USERS
+aws iam delete-user --user-name CEO
+aws iam delete-user --user-name CFO
+aws iam delete-user --user-name COO
+aws iam delete-user --user-name CTO
+
+aws sso-admin delete-user --instance-arn arn:aws:sso:::instance/ssoins-xxxxxxxxxx --user-name "CEO"
+aws sso-admin delete-user --instance-arn arn:aws:sso:::instance/ssoins-xxxxxxxxxx --user-name "CFO"
+aws sso-admin delete-user --instance-arn arn:aws:sso:::instance/ssoins-xxxxxxxxxx --user-name "COO"
+aws sso-admin delete-user --instance-arn arn:aws:sso:::instance/ssoins-xxxxxxxxxx --user-name "CTO"
+
+# aws sso-admin create-user --instance-arn arn:aws:sso:::instance/ssoins-xxxxxxxxxx --user-name "CEO" --first-name "I" --last-name "O" --email "ceo@ff4f00.com"
+# aws sso-admin create-user --instance-arn arn:aws:sso:::instance/ssoins-xxxxxxxxxx --user-name "CFO" --first-name "I" --last-name "O" --email "cfo@ff4f00.com"
+# aws sso-admin create-user --instance-arn arn:aws:sso:::instance/ssoins-xxxxxxxxxx --user-name "COO" --first-name "I" --last-name "O" --email "coo@ff4f00.com"
+# aws sso-admin create-user --instance-arn arn:aws:sso:::instance/ssoins-xxxxxxxxxx --user-name "CTO" --first-name "I" --last-name "O" --email "cto@ff4f00.com"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

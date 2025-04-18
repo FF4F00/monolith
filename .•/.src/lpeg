@@ -1,0 +1,12 @@
+#!/bin/bash
+
+
+dir="/tmp"
+zip="tar.gz"
+
+lpeg="1.1.0"
+
+
+curl -o "$dir/lpeg-$lpeg.$zip" -L "https://www.inf.puc-rio.br/~roberto/lpeg/lpeg-$lpeg.tar.gz"
+tar -xzvf "$dir/lpeg-$lpeg.$zip" -C $dir && rm -rf $dir/lpeg-$lpeg.$zip
+cd "$dir/lpeg-$lpeg" && make && sudo make install

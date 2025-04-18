@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Function to check if a command exists
+command_exists() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+# Check if Rust and Cargo are installed
+if ! command_exists rustc || ! command_exists cargo; then
+  echo "Rust and Cargo are not installed. Installing..."
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+else
+  echo "Rust and Cargo are already installed."
+fi
+
+# Install bandwhich via cargo
+echo "Installing bandwhich..."
+git clone https://github.com/imsnif/bandwhich.git
+cd bandwhich
+cargo build --release && rm -rf bandwhich
+
+echo "bandwhich has been installed. Make sure ~/.cargo/bin is in your PATH."
+

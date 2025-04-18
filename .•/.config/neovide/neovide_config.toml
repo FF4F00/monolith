@@ -1,0 +1,23 @@
+
+# if using bob nvim
+# neovim-bin = "$HOME/.local/share/bob/nvim-bin/nvim"
+
+title-hidden = true
+frame = 'buttonless'
+
+dynamic_padding = true
+
+fork = false
+idle = true
+maximized = false
+neovim-bin = "/usr/local/bin/nvim"
+no-multigrid = false
+srgb = false
+tabs = true
+theme = "auto"
+vsync = true
+wsl = false
+
+[font]
+normal = ["Dank Mono"]
+size = 14

@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+
+cd /tmp
+
+# 1. Build and install ffmpeg with ALAC support (ALAC is enabled by default)
+echo "Installing ffmpeg from source..."
+git clone https://git.ffmpeg.org/ffmpeg.git ffmpeg
+cd ffmpeg
+./configure --enable-shared --disable-static --disable-everything --enable-demuxer=mov --enable-decoder=alac --enable-encoder=alac --enable-protocol=file --enable-muxer=ipod --enable-muxer=mp4 --enable-muxer=mov --enable-avformat --enable-avcodec --enable-avutil --enable-swresample --enable-swscale
+make -j$(sysctl -n hw.ncpu)
+sudo make install
+cd /tmp
+

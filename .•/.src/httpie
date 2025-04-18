@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Set variables
+DMG_URL="https://github.com/httpie/desktop/releases/download/v2025.2.0/HTTPie-2025.2.0-arm64.dmg"
+DMG_NAME="HTTPie-2025.2.0-arm64.dmg"
+VOLUME_NAME="HTTPie"
+
+# Download the DMG
+curl -L -o "$DMG_NAME" "$DMG_URL"
+
+# Mount the DMG
+MOUNT_POINT=$(hdiutil attach "$DMG_NAME" | grep "/Volumes/" | awk '{print $3}')
+
+# Copy the app to /Applications
+cp -R "$MOUNT_POINT/HTTPie.app" /Applications/
+
+# Unmount the DMG
+hdiutil detach "$MOUNT_POINT"
+
+# Remove the downloaded DMG
+rm "$DMG_NAME"
+

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+sudo port install mpd
+sudo port install mpc
+sudo port install ncmpcpp
+
+

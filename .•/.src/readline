@@ -1,0 +1,16 @@
+#!/bin/bash
+
+
+dir="/tmp"
+zip="tar.gz"
+
+
+
+readline="8.2.13"
+
+
+curl -o "$dir/readline-$readline.$zip" -L "https://ftp.gnu.org/gnu/readline/readline-$readline.tar.gz"
+
+tar -xzvf "$dir/readline-$readline.$zip" -C $dir && rm -rf $dir/readline-$readline.$zip
+
+cd "$dir/readline-$readline" && ./configure && make && sudo make install

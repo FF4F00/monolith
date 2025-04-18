@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Set variables
+PKG_URL="https://github.com/macports/macports-base/releases/download/v2.10.5/MacPorts-2.10.5-15-Sequoia.pkg"
+PKG_NAME="MacPorts-2.10.5-15-Sequoia.pkg"
+
+# Download the package
+curl -L -o "$PKG_NAME" "$PKG_URL"
+
+# Install the package
+sudo installer -pkg "$PKG_NAME" -target /
+
+# Clean up the downloaded package
+rm "$PKG_NAME"
+
+echo "MacPorts has been installed."
+

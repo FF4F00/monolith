@@ -1,0 +1,33 @@
+# vim: set filetype=dosini :
+
+# Terminal
+term = "xterm-256color"
+
+# Fonts
+font-family = "Dank Mono"
+font-size = 14
+
+
+# Window
+title = ""
+theme = pm
+window-width = 80
+window-height = 26
+window-padding-x = 32
+window-padding-y = 32
+window-colorspace = srgb
+macos-titlebar-style = hidden
+macos-titlebar-proxy-icon = hidden
+background-opacity = 0.95
+background-blur = true
+
+
+# Cursor
+# shell-integration-features = no-cursor
+cursor-style = block
+cursor-style-blink = true
+cursor-click-to-move = true
+
+
+# Keyboard
+macos-option-as-alt = false

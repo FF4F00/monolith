@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Set variables
+DMG_URL="https://github.com/neovide/neovide/releases/latest/download/Neovide-aarch64-apple-darwin.dmg"
+DMG_NAME="Neovide.dmg"
+VOLUME_NAME="Neovide"
+
+# Download the DMG
+curl -L -o "$DMG_NAME" "$DMG_URL"
+
+# Mount the DMG
+MOUNT_POINT=$(hdiutil attach "$DMG_NAME" | grep "/Volumes/" | awk '{print $3}')
+
+# Copy the app to /Applications
+cp -R "$MOUNT_POINT/Neovide.app" /Applications/
+
+# Unmount the DMG
+hdiutil detach "$MOUNT_POINT"
+
+# Remove the downloaded DMG
+rm "$DMG_NAME"
+
+

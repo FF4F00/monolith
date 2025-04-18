@@ -1,0 +1,17 @@
+#!/bin/zsh
+dir="/tmp"
+zip="tar.gz"
+
+# NEOVIM
+autoconf="autoconf-2.72"
+
+
+# DOWNLOAD
+curl -o "$dir/$autoconf.$zip" -OL "https://mirrors.ocf.berkeley.edu/gnu/autoconf/$autoconf.$zip"
+
+# UNPACK
+tar -xzvf "$dir/$autoconf.$zip" -C $dir
+
+
+# INSTALL
+cd "$dir/$autoconf" && ./configure && make && sudo make install

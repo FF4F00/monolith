@@ -1,0 +1,77 @@
+#!/bin/zsh
+dir="/tmp"
+zip="tar.gz"
+
+
+# CMAKE
+cmake="cmake-3.31.6"
+curl -o "$dir/$cmake.$zip" -L "https://github.com/Kitware/CMake/releases/download/v3.31.6/$cmake.$zip"
+tar -xzvf "$dir/$cmake.$zip" -C $dir && rm -rf $dir/cmake-$cmake.$zip
+cd "$dir/$cmake" && ./configure && make && sudo make install
+
+# NINJA
+ninja="ninja-1.12.1"
+curl -L "https://github.com/ninja-build/ninja/archive/refs/tags/v1.12.1.$zip" -o "$dir/$ninja.$zip"
+tar -xzvf "$dir/$ninja.$zip" -C "$dir"
+cd "$dir/$ninja" && ./configure
+sudo cmake -B build-cmake
+sudo cmake --build build-cmake
+sudo cmake --install build-cmake
+sudo mv /tmp/$ninja/build-cmake/ninja /usr/local/bin
+
+# AUTOCONF
+autoconf="autoconf-2.72"
+curl -o "$dir/$autoconf.$zip" -OL "https://mirrors.ocf.berkeley.edu/gnu/autoconf/$autoconf.$zip"
+tar -xzvf "$dir/$autoconf.$zip" -C $dir
+cd "$dir/$autoconf" && ./configure && make && sudo make install
+
+# AUTOMAKE
+automake="automake-1.17"
+curl -o "$dir/$automake.$zip" -OL "https://mirrors.ocf.berkeley.edu/gnu/automake/$automake.$zip"
+tar -xzvf "$dir/$automake.$zip" -C $dir
+cd "$dir/$automake" && ./configure && make && sudo make install # automake
+
+# LIBTOOL
+libtool="libtool-2.5.4"
+curl -o "$dir/$libtool.$zip"  -OL "https://ftpmirror.gnu.org/libtool/$libtool.$zip"
+tar -xzvf "$dir/$libtool.$zip"  -C $dir
+cd "$dir/$libtool"  && ./configure && make && sudo make install # libtool
+
+# LibreSSL
+curl -L -o "/tmp/libressl-4.0.0.tar.gz" "https://github.com/libressl/portable/releases/download/v4.0.0/#libressl-4.0.0.tar.gz"
+tar -xvzf "/tmp/libressl-4.0.0.tar.gz" -C "/tmp" && rm -rf /tmp/libressl-4.0.0.tar.gz
+cd /tmp/libressl-4.0.0 && ./configure --prefix=/usr/local/ && sudo make install
+export PATH="/usr/local/bin:$PATH"
+export DYLD_LIBRARY_PATH="/usr/local/lib:$DYLD_LIBRARY_PATH"
+export LDFLAGS="-L/usr/local/lib"
+export CPPFLAGS="-I/usr/local/include"
+echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.zshrc
+
+# Tailwind
+#curl -sLo /tmp/tailwindcss-macos-arm64 https://github.com/tailwindlabs/tailwindcss/releases/download/v4.0.14/tailwindcss-macos-arm64
+#chmod +x /tmp/tailwindcss-macos-arm64
+#sudo mv /tmp/tailwindcss-macos-arm64 /usr/local/bin/tw
+
+# NL (Network Layer)
+#git clone https://github.com/cloudflare/python-cloudflare-cli4 "$dir/python-cloudflare-cli4"
+#cd $dir/python-cloudflare-cli4
+#python3 -m pip install .
+#export PATH="/Users/io/Library/Python/3.9/bin:$PATH"
+
+# CL (Compute Layer)
+#curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "$dir/AWSCLIV2.pkg"
+#sudo installer -pkg "$dir/AWSCLIV2.pkg" -target /
+#sudo rm -rf "$dir/AWSCLIV2.pkg"
+
+# DL (Data Layer)
+#curl -sSf https://install.surrealdb.com | sh
+#curl -L -o "$dir/Surrealist.dmg" "https://github.com/surrealdb/surrealist/releases/download/surrealist-v3.2.4/Surrealist_3.2.4_aarch64.dmg"
+#hdiutil attach "$dir/Surrealist.dmg" -nobrowse
+#cp -R "/Volumes/Surrealist/Surrealist.app" /Applications/
+#hdiutil detach "/Volumes/Surrealist"
+#sudo rm -rf "$dir/Surrealist.dmg"
+
+# SL (Storage Layer)
+#curl -L https://github.com/storj/storj/releases/download/v1.124.4/uplink_darwin_arm64.zip -o "$dir/uplink_darwin_arm64.zip"
+#unzip "$dir/uplink_darwin_arm64.zip" -d "$dir"
+#sudo install "$dir/uplink" /usr/local/bin/uplink

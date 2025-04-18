@@ -1,0 +1,59 @@
+#!/bin/zsh
+
+#sudo rm -rf /usr/local/bin/*
+#sudo rm -rf /usr/local/lib/*
+#sudo rm -rf /usr/local/doc/*
+#sudo rm -rf /usr/local/include/*
+#sudo rm -rf /usr/local/share/*
+#rm -rf /tmp/*
+
+#source "$HOME/.•/.src/cmake"
+#source "$HOME/.•/.src/ninja"
+
+for src in msgpack \
+           lpeg \
+           luajit \
+           libuv \
+           luv \
+           libvterm \
+           gettext \
+           tree-sitter \
+           unibilium; do
+  source "$HOME/.•/.src/$src"
+done
+
+sudo rm -rf /tmp/*
+
+ver="0.11.0"
+url="https://github.com/neovim/neovim/archive/refs/tags/v$ver.tar.gz"
+src="neovim-$ver"
+
+
+dir="/tmp"
+zip="tar.gz"
+
+# DOWNLOAD
+curl -o "$dir/$src.$zip" -OL "$url"
+
+# UNPACK
+tar -xzvf "$dir/$src.$zip" -C $dir
+
+for color in blue darkblue delek desert elflord evening habamax industry koehler lunaperche morning murphy pablo peachpuff quiet retrobox ron shine slate sorbet torte wildcharm zaibatsu zellner; do
+  rm -f "$dir/$src/runtime/colors/$color.vim"
+done
+
+# am:pm
+cp $HOME/.•/.theme/am.vim $dir/$src/runtime/colors/am.vim
+cp $HOME/.•/.theme/pm.vim $dir/$src/runtime/colors/pm.vim
+
+# INSTALL
+cd "$dir/$src" && make CMAKE_BUILD_TYPE=Release && sudo make install
+
+
+if $HOME/.config/nvim doest exist 
+mkdir $HOME/.config/nvim
+cp $HOME/.•/.config/neovim/* $HOME/.config/nvim
+
+
+
+

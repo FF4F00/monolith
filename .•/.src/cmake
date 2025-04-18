@@ -1,0 +1,15 @@
+#!/bin/zsh
+dir="/tmp"
+zip="tar.gz"
+
+
+cmake="cmake-3.31.6"
+
+
+
+
+curl -o "$dir/$cmake.$zip" -L "https://github.com/Kitware/CMake/releases/download/v3.31.6/$cmake.$zip"
+
+tar -xzvf "$dir/$cmake.$zip" -C $dir && rm -rf $dir/cmake-$cmake.$zip
+
+cd "$dir/$cmake" && ./configure && make && sudo make install

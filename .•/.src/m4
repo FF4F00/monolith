@@ -1,0 +1,17 @@
+#!/bin/zsh
+dir="/tmp"
+zip="tar.gz"
+
+
+m4="m4-1.4.19"
+
+
+# DOWNLOAD
+curl -o "$dir/$m4.$zip"       -OL "https://mirrors.ocf.berkeley.edu/gnu/m4/$m4.$zip"
+
+# UNPACK
+tar -xzvf "$dir/$m4.$zip"       -C $dir
+
+
+# INSTALL
+cd "$dir/$m4"       && ./configure && make && sudo make install # m4

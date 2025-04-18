@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Function to check if a command exists
+command_exists() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+# Check if Rust and Cargo are installed
+if ! command_exists rustc || ! command_exists cargo; then
+  echo "Rust and Cargo are not installed. Installing..."
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+else
+  echo "Rust and Cargo are already installed."
+fi
+
+# Install zoxide via cargo
+echo "Installing zoxide..."
+cargo install zoxide --locked
+
+echo "zoxide has been installed. Make sure ~/.cargo/bin is in your PATH."
+

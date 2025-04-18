@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+dir="/tmp"
+zip="tar.gz"
+
+
+zlib="zlib-1.3.1"
+
+curl -o "$dir/$zlib.$zip" -L "https://zlib.net/$zlib.tar.gz"
+
+tar -xzvf "$dir/$zlib.$zip" -C $dir && rm -rf $dir/$zlib.$zip
+
+cd "$dir/$zlib" && ./configure && make && sudo make install

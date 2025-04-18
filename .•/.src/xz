@@ -1,0 +1,17 @@
+#!/bin/zsh
+dir="/tmp"
+zip="tar.gz"
+
+# NEOVIM
+xz="xz-5.6.4"
+
+
+# DOWNLOAD
+curl -o "$dir/$xz.$zip"       -OL "https://tukaani.org/xz/$xz.$zip"
+
+# UNPACK
+tar -xzvf "$dir/$xz.$zip"       -C $dir
+
+
+# INSTALL
+cd "$dir/$xz"       && ./configure && make && sudo make install # xz

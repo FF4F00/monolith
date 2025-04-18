@@ -1,0 +1,12 @@
+
+cd $HOME/Desktop/SFO/02LAUNCH && git add . && git commit -m "+/=" && git push
+cd $HOME/Desktop/SFO/FF4F00   && git add . && git commit -m "+/=" && git push
+cd $HOME/Desktop/SFO/IO       && git add . && git commit -m "+/=" && git push
+cd $HOME/Desktop/SFO/UI       && git add . && git commit -m "+/=" && git push
+cd $HOME/Desktop/SFO/iD       && git add . && git commit -m "+/=" && git push
+cd $HOME/Desktop/SFO/Bazaar   && git add . && git commit -m "+/=" && git push
+cd $HOME/Desktop/SFO/HALO     && git add . && git commit -m "+/=" && git push
+cd $HOME/Desktop/SFO/MARS     && git add . && git commit -m "+/=" && git push
+cd $HOME/Desktop/SFO/cirqol   && git add . && git commit -m "+/=" && git push
+
+

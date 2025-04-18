@@ -1,0 +1,21 @@
+#!/bin/zsh
+dir="/tmp"
+zip="tar.gz"
+
+# NEOVIM
+ninja="ninja-1.12.1"
+
+
+# DOWNLOAD
+curl -L "https://github.com/ninja-build/ninja/archive/refs/tags/v1.12.1.$zip" -o "$dir/$ninja.$zip"
+
+# UNPACK
+tar -xzvf "$dir/$ninja.$zip" -C "$dir"
+
+# INSTALL
+cd "$dir/$ninja" && ./configure
+sudo cmake -B build-cmake
+sudo cmake --build build-cmake
+sudo cmake --install build-cmake
+sudo mv /tmp/$ninja/build-cmake/ninja /usr/local/bin
+
