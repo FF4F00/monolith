@@ -1,0 +1,31 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Thumbnail cache
+.Thumbs.db
+
+# Files created by macOS
+.Spotlight-V100
+.Trashes
+.fseventsd
+.TemporaryItems
+.VolumeIcon.icns
+
+# IDE/Editor directories
+.idea/
+.vscode/
+
+# Dependency directories
+node_modules/
+venv/
+
+# Compiled files
+*.pyc
+*.out
+*.class
+*.o
+*.a
+
