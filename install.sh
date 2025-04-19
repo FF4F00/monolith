@@ -10,6 +10,7 @@ $SRC/macOS
 
 $SRC/modular
 $SRC/surrealdb
+
 $SRC/ghostty
 
   $SRC/zoxide
@@ -20,7 +21,6 @@ $SRC/ghostty
   $SRC/mpd
   $SRC/aws
   $SRC/neovim
-  $SRC/
 
 $SRC/neovide
 $SRC/figma
