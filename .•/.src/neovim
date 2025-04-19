@@ -10,17 +10,7 @@
 #source "$HOME/.•/.src/cmake"
 #source "$HOME/.•/.src/ninja"
 
-for src in msgpack \
-           lpeg \
-           luajit \
-           libuv \
-           luv \
-           libvterm \
-           gettext \
-           tree-sitter \
-           unibilium; do
-  source "$HOME/.•/.src/$src"
-done
+
 
 sudo rm -rf /tmp/*
 
@@ -43,16 +33,16 @@ for color in blue darkblue delek desert elflord evening habamax industry koehler
 done
 
 # am:pm
-cp $HOME/.•/.theme/am.vim $dir/$src/runtime/colors/am.vim
-cp $HOME/.•/.theme/pm.vim $dir/$src/runtime/colors/pm.vim
+#cp $HOME/.•/.theme/am.vim $dir/$src/runtime/colors/am.vim
+#cp $HOME/.•/.theme/pm.vim $dir/$src/runtime/colors/pm.vim
 
 # INSTALL
 cd "$dir/$src" && make CMAKE_BUILD_TYPE=Release && sudo make install
 
 
-if $HOME/.config/nvim doest exist 
-mkdir $HOME/.config/nvim
-cp $HOME/.•/.config/neovim/* $HOME/.config/nvim
+#if $HOME/.config/nvim doest exist 
+#mkdir $HOME/.config/nvim
+#cp $HOME/.•/.config/neovim/* $HOME/.config/nvim
 
 
 
