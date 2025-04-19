@@ -1,6 +1,5 @@
 # monolith
 
-![monolith](https://github.com/FF4F00/monolith/blob/main/monolith.png)
 
 
 ```
